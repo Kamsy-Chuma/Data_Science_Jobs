@@ -9,7 +9,7 @@ FROM
 	salaries;
 
 
--- LOCATION
+-----------------	LOCATION	---------------
 -- How many job postings were made by each country
 SELECT
 	company_location,
@@ -22,7 +22,7 @@ ORDER BY
 	job_count DESC;
 
 
--- What job roles does each country offer the most openings?
+-- What job roles does each country offer the most job openings to?
 SELECT
 	company_location,
 	job_title,
@@ -162,19 +162,8 @@ WHERE
 ORDER BY
 	sum_avg_salary DESC;
 
--- EMP. TYPE
-SELECT
-	employment_type,
-	ROUND(AVG(CASE WHEN work_year = 2020 THEN salary_in_usd END), 2) AS avg_salary_2020,
-	ROUND(AVG(CASE WHEN work_year = 2021 THEN salary_in_usd END), 2) AS avg_salary_2021,
-	ROUND(AVG(CASE WHEN work_year = 2022 THEN salary_in_usd END), 2) AS avg_salary_2022
-FROM
-	salaries
-GROUP BY
-	employment_type
 
-
--- JOB ROLES:
+---------------		JOB ROLES	---------------
 -- What job role had the most postings?
 SELECT
 	job_title,
@@ -273,7 +262,7 @@ ORDER BY
 	avg_salary DESC;
 
 
--- EXPERIENCE LEVEL:
+--------------		EXPERIENCE LEVEL	---------------
 -- Number of job postings made for each experience level
 SELECT
 	experience_level,
@@ -393,7 +382,7 @@ ORDER BY
 	avg_salary DESC;
 
 
--- Work Year
+---------------		Work Year	---------------
 -- Trend for Average salary paid per data science jobs per year
 SELECT
 	work_year,
@@ -437,7 +426,7 @@ ON
     ec2.work_year = ec1.work_year + 1;
 
 
--- Distribution of Salaries for each job role over the years
+-- the average paid salary per year for different job roles
 SELECT
 	job_title,
 	ROUND(AVG(CASE WHEN work_year = 2020 THEN salary_in_usd END), 2) AS avg_salary_2020,
@@ -449,7 +438,8 @@ GROUP BY
 	job_title;
 
 
--- EMPLOYMENT TYPE
+---------------		EMPLOYMENT TYPE		---------------
+-- Average salary paid per year for different employment type
 SELECT
 	employment_type,
 	ROUND(AVG(CASE WHEN work_year = '2020' THEN salary_in_usd END), 2) AS avg_salary_2020,
@@ -523,7 +513,7 @@ ORDER BY
 	salary_in_usd DESC;
 
 
--- Remote Ratio Analysis
+-------------		Remote Ratio Analysis		---------------
 -- Number of Remote work opportunities and average salary paid:
 -- COUNT:
 SELECT
